@@ -8,19 +8,20 @@ public class waveEffect : MonoBehaviour {
     public Color segmentColor;
     public float width;
     public float offset;
-    GameObject[] segments;
+    public GameObject[] segments;
     public int layer;
 
-    public int segIndex;
+    public static waveEffect instance;
 
     void Start() {
+        instance = this;
         segments = new GameObject[Mathf.CeilToInt(width / segment.transform.localScale.x)];
         drawSegments();
     }
 
     void Update() {
-        if (Input.GetKeyDown(KeyCode.Space)) {
-            startForce();
+        if (Input.GetKeyDown(KeyCode.Q)) {
+            startForce(0, 5);
         }
     }
 
@@ -38,18 +39,18 @@ public class waveEffect : MonoBehaviour {
         
     }
 
-    void startForce() {
-        segments[segIndex].GetComponent<Rigidbody2D>().velocity = new Vector2(0, 5);
-        StartCoroutine(sendForce(segIndex - 1, 5, -1));
-        StartCoroutine(sendForce(segIndex + 1, 5, 1));
+    public void startForce(int segIndex, float force) {
+        //segments[segIndex].GetComponent<Rigidbody2D>().velocity = new Vector2(0, force);
+        StartCoroutine(sendForce(segIndex - 2, force, -1));
+        StartCoroutine(sendForce(segIndex + 2, force, 1));
     }
 
     IEnumerator sendForce(int blockIndex, float force, int direction) {
 
         if (blockIndex < segments.Length && blockIndex >= 0) {
             yield return new WaitForSeconds(0.05f);
-            segments[blockIndex].GetComponent<Rigidbody2D>().velocity = new Vector2(0, 5);
-            StartCoroutine(sendForce(blockIndex + direction, 5, direction));
+            segments[blockIndex].GetComponent<Rigidbody2D>().velocity = new Vector2(0, force);
+            StartCoroutine(sendForce(blockIndex + direction, force, direction));
         }
     }
 
