@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SquareBehavior : MonoBehaviour {
 
-	public int Amplitude = 2;
+	//public int Amplitude = 2;
 	public float Wavelength = 2f;
 
 	// Use this for initialization
@@ -18,26 +18,17 @@ public class SquareBehavior : MonoBehaviour {
 		foreach (GameObject pulse in GameObject.FindGameObjectsWithTag("Pulse")) {
 			float xPos = transform.position.x;
 			float xPulsePos = pulse.transform.position.x;
-			/*if (xPos - xPulsePos < (Amplitude * 2) && xPos - xPulsePos > 0) {
-				FinalYPos += Amplitude - Mathf.Log10(Mathf.Abs (xPos - (xPulsePos + Amplitude)));
-			} else if (xPos - xPulsePos < 0 && xPos - xPulsePos > (Amplitude * -2)) {
-				FinalYPos += -Amplitude + Mathf.Log10(Mathf.Abs (xPos - (xPulsePos - Amplitude)));
-			} */
+
 			if (xPos - xPulsePos < Wavelength && xPos - xPulsePos > -Wavelength) {
-				FinalYPos += Amplitude * Mathf.Sin (((Mathf.PI / Wavelength) * (xPos - xPulsePos)));
+				FinalYPos += pulse.GetComponent<PulseMove>().Amplitude * Mathf.Sin (((Mathf.PI / Wavelength) * (xPos - xPulsePos)));
 			}
 		}
 		foreach (GameObject pulse in GameObject.FindGameObjectsWithTag("AntiPulse")) {
 			float xPos = transform.position.x;
 			float xPulsePos = pulse.transform.position.x;
-			/*if (xPos - xPulsePos < 0 && xPos - xPulsePos > (Amplitude * -2)) {
-				FinalYPos += Amplitude - Mathf.Abs (xPos - (xPulsePos - Amplitude));
-			} else if (xPos - xPulsePos < (Amplitude * 2) && xPos - xPulsePos > 0) {
-				FinalYPos += -Amplitude + Mathf.Abs (xPos - (xPulsePos + Amplitude));
-			} */
 
 			if (xPos - xPulsePos < Wavelength && xPos - xPulsePos > -Wavelength) {
-				FinalYPos += -Amplitude * Mathf.Sin ((Mathf.PI / Wavelength) * (xPos - xPulsePos));
+				FinalYPos += -pulse.GetComponent<AntiPulseMove>().Amplitude * Mathf.Sin ((Mathf.PI / Wavelength) * (xPos - xPulsePos));
 			}
 
 		}

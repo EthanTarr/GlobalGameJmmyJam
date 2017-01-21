@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class playertest : MonoBehaviour {
 
-    Rigidbody2D rigid;
+/*    Rigidbody2D rigid;
     public Controls control;
 
     void Start() {
@@ -43,7 +43,7 @@ public class playertest : MonoBehaviour {
     void OnCollisionEnter2D(Collision2D other) {
         if (other.gameObject.tag != "Player")
             waveEffect.instance.startForce(Array.IndexOf(waveEffect.instance.segments, other.gameObject), Mathf.Abs(velocity) / 2);
-    }
+    }*/
 }
 
 [Serializable]

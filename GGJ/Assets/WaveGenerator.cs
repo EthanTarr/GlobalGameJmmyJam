@@ -20,8 +20,15 @@ public class WaveGenerator : MonoBehaviour {
 
 
 	void makeWave() {
-		Instantiate (pulse, new Vector3 (-10, 0, 0), Quaternion.identity);
-		Instantiate (antiPulse, new Vector3(10,0,0), Quaternion.identity);
+		Instantiate (pulse, new Vector3 (0, 0, 0), Quaternion.identity);
+		Instantiate (antiPulse, new Vector3(0,0,0), Quaternion.identity);
+	}
+
+	public void makeWave(float position, float amplitude) {
+		GameObject Pulse = Instantiate (pulse, new Vector3 (position, 0, 0), Quaternion.identity);
+		Pulse.GetComponent<PulseMove> ().Amplitude = amplitude;
+		GameObject AntiPulse = Instantiate (antiPulse, new Vector3(position, 0, 0), Quaternion.identity);
+		AntiPulse.GetComponent<AntiPulseMove> ().Amplitude = amplitude;
 	}
 }
 

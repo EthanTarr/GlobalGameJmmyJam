@@ -5,6 +5,7 @@ using UnityEngine;
 public class PulseMove : MonoBehaviour {
 
 	public float speed = 5;
+	public float Amplitude = 1;
 
 	// Use this for initialization
 	void Start () {
