@@ -12,6 +12,7 @@ public class waveEffect : MonoBehaviour {
     public int layer;
 
     public static waveEffect instance;
+    public float maxVelocity;
 
     void Start() {
         instance = this;
@@ -41,6 +42,7 @@ public class waveEffect : MonoBehaviour {
 
     public void startForce(int segIndex, float force) {
         //segments[segIndex].GetComponent<Rigidbody2D>().velocity = new Vector2(0, force);
+        force = Mathf.Min(force, maxVelocity);
         StartCoroutine(sendForce(segIndex - 2, force, -1));
         StartCoroutine(sendForce(segIndex + 2, force, 1));
     }
