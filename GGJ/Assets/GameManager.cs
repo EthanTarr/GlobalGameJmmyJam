@@ -19,7 +19,7 @@ public class GameManager : MonoBehaviour {
 
 	void SpawnSqures() {
 		for (int i = -FloorSpawns; i < FloorSpawns; i++) {
-			Instantiate (Square, new Vector3 (i, 0, 0), Quaternion.identity);
+			Instantiate (Square, new Vector3 (.5f * i, 0, 0), Quaternion.identity);
 		}
 	}
 }
