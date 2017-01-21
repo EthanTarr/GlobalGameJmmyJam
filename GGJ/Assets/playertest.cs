@@ -12,10 +12,10 @@ public class playertest : MonoBehaviour {
         rigid = GetComponent<Rigidbody2D>();
     }
 
-    void OnCollisionStay2D(Collision2D other) {
+   /* void OnCollisionStay2D(Collision2D other) {
         if(other.gameObject.tag != "Player")
             rigid.velocity += other.gameObject.GetComponent<Rigidbody2D>().velocity / 2;
-    }
+    } */
 
 
     void Update() {
@@ -40,10 +40,10 @@ public class playertest : MonoBehaviour {
         velocity = rigid.velocity.y;
     }
 
-    void OnCollisionEnter2D(Collision2D other) {
+    /*void OnCollisionEnter2D(Collision2D other) {
         if (other.gameObject.tag != "Player")
             waveEffect.instance.startForce(Array.IndexOf(waveEffect.instance.segments, other.gameObject), Mathf.Abs(velocity) / 2);
-    }
+    }*/
 }
 
 [Serializable]
